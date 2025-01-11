@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text should be visible.
+  </div>
+
+  <script>
+    // This script attempts to remove the div, but fails silently due to a timing issue
+    // The div is removed only after the script execution is completed.
+    document.getElementById("myDiv").remove();
+  </script>
+</body>
+</html>
