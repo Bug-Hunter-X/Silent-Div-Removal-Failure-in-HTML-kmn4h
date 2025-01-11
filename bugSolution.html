@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Uncommon HTML Bug Solution</title>
+</head>
+<body>
+  <div id="myDiv">
+    This text should be visible.
+  </div>
+
+  <script>
+    // Use a MutationObserver to ensure the div is removed after it's rendered by the browser
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'childList' && mutation.target === document.body) {
+          const div = document.getElementById('myDiv');
+          if(div){
+            div.remove();
+          }
+          observer.disconnect(); // stop observing
+        }
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+  </script>
+</body>
+</html>
